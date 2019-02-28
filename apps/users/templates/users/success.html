@@ -1,0 +1,16 @@
+{% extends 'users/base.html' %}
+{% block title %}success{% endblock %}
+{% block content %}
+<div class="container">
+    {% if messages %}
+    {% for msg in messages %}
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{msg.message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <h1>Successs</h1>
+    <a href="/logout/">logout</a>
+</div>
+{% endblock %}

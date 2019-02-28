@@ -1,0 +1,43 @@
+{% extends 'users/base.html' %}
+{% block title %}
+Delete a Job
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row my-4">
+        <div class="col-sm-12 col-md-6 offset-md-3" id="sub-main-div">
+            <h5 class="my-3">Are you sure you want to delete the following job?</h5>
+            <div class="row">
+                <div class="col-sm-2">
+                    <h6>Title:</h6>
+                </div>
+                <div class="col-sm-10">
+                    <p>{{ job.title.title }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <h6>Description:</h6>
+                </div>
+                <div class="col-sm-10">
+                    <p>{{ job.description }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <h6>Location:</h6>
+                </div>
+                <div class="col-sm-10">
+                    <p>{{ job.location }}</p>
+                </div>
+            </div>
+            <form action="/destroy/" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="job_id" value={{job.id}}>
+                <a class="btn btn-secondary" href="/dashboard/" role="button">No</a>
+                <button class="btn btn-danger">Yes, I want to delete this!</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Pacifico|Condensed|Roboto+Condensed|Ubuntu|Kalam|Amaranth|Arbutus+Slab|Lobster');
+body {
+    font-family: "Roboto Condensed";
+}
+.p-lbl {
+  padding-top: 1.2rem !important;
+}
+#login .form-control, #register .form-control{
+  background: #f7f7f7 none repeat scroll 0 0;
+  font-size: 14px;
+  height: 50px;
+  line-height: 50px;
+}
+
+#login label, #register label{
+    margin-top: 5px;
+}
+
+#sub-main-div .btn.btn-warning {
+  background: #ff9900 none repeat scroll 0 0;
+  font-size: 16px;
+  line-height: 35px;
+}
+
+#view {
+  border: 2px solid black;
+  padding: 10px;
+}

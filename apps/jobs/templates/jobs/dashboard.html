@@ -1,0 +1,72 @@
+{% extends 'users/base.html' %}
+{% block title %}Handy Helper Dashboard{% endblock %}
+{% block content %}
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Welcome {{logged_in.first_name.title}}!</h5>
+    <nav class="my-2 my-md-0 ml-md-3">
+        <a class="p-2 text-primary" href="/logout/">Logout</a>
+    </nav>
+</div>
+<div class="container">
+    {% if messages %}
+    {% for msg in messages %}
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{msg.message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="d-flex justify-content-end">
+        <a href="/add/">Add A Job</a>
+    </div>
+    <div class="row my-4">
+        <div class="col-sm-12 col-md-6">
+            <table class="table table-striped border my-2">
+                <thead>
+                    <tr class="text-center">
+                        <th>Job</th>
+                        <th>Locatin</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in jobs %}
+                    <tr class="text-center">
+                        <td>{{job.title.title}}</td>
+                        <td>{{job.location}}</td>
+                        <td>
+                            <a class="mx-1" href="/view/{{job.id}}/">View</a>
+                            <a class="mx-1" href="/move/job/{{job.id}}/">Add</a>
+                            {% if job.creator_id == request.session.user_id %}
+                            <a class="mx-1" href="/edit/{{job.id}}">Edit</a>
+                            <a class="mx-1" href="/delete/{{job.id}}">Cancel</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <table class="table table-striped border my-2">
+                <thead>
+                    <tr>
+                        <th colspan="2">My Jobs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in myJobs %}
+                    <tr class="text-center">
+                        <td>{{job.title.title}}</td>
+                        <td>
+                            <a class="mx-1" href="/view/{{job.id}}/">View</a>
+                            <a class="mx-1" href="/delete/{{job.id}}">Done</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
